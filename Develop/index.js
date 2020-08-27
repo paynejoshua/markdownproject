@@ -41,7 +41,18 @@ const questions = [{
     type: "list",
     choices: ["1", "2", "3"],
     default: "no license selected",
+},
+{
+    name: "github",
+    message: "What is your github username?",
+    default: "Username not provided",
+},
+{
+    name: "email",
+    message: "What is your email for further questions about this project?",
+    default: "No email has been provided",
 }
+
 
 ];
 
@@ -51,21 +62,40 @@ function writeToFile(fileName, data) {
        fs.unlinkSync(fileName)
    }
 
-    let titleAnswer = data["Title"]
-    let descriptionAnswer = data["Description"]
-    let installAnswer = data["InstallationInstructions"]
-    let usageAnswer = data["UsageInformation"]
-    let contributeAnswer = data["ContributionGuidelines"]
-    let testAnswer = data["TestInstructions"]
-    let licenseAnswer = data("license")
+    let titleAnswer = data["Title"];
+    let descriptionAnswer = data["Description"];
+    let installAnswer = data["InstallationInstructions"];
+    let usageAnswer = data["UsageInformation"];
+    let contributeAnswer = data["ContributionGuidelines"];
+    let testAnswer = data["TestInstructions"];
+    let licenseAnswer = data["License"];
+    let githubAnswer = data["github"];
+    let emailAnswer = data ["email"];
 
-    fs.appendFileSync(fileName, generateMarkdown(titleAnswer) + '\n')
-    fs.appendFileSync(fileName, generateMarkdown(descriptionAnswer)+ '\n')
-    fs.appendFileSync(fileName, generateMarkdown(installAnswer)+ '\n')
-    fs.appendFileSync(fileName, generateMarkdown(usageAnswer)+ '\n')
-    fs.appendFileSync(fileName, generateMarkdown(contributeAnswer)+ '\n')
-    fs.appendFileSync(fileName, generateMarkdown(testAnswer)+ '\n')
-    fs.appendFileSync(fileName, generateMarkdown(licenseAnswer)+ '\n')
+    fs.appendFileSync(fileName, generateMarkdown("Title"));
+    fs.appendFileSync(fileName, titleAnswer + '\n');
+    fs.appendFileSync(fileName, generateMarkdown("Description") + '\n');
+    fs.appendFileSync(fileName, descriptionAnswer + '\n');
+    fs.appendFileSync(fileName, generateMarkdown("Table of contents") + '\n');
+    fs.appendFileSync(fileName, "[Installation](#installation)" + '\n');
+    fs.appendFileSync(fileName, "[Usage](#usage)" + '\n');
+    fs.appendFileSync(fileName, "[Contributing](#contributing)" + '\n');
+    fs.appendFileSync(fileName, "[Tests](#tests)" + '\n');
+    fs.appendFileSync(fileName, "[License](#license)" + '\n');
+    fs.appendFileSync(fileName, "[Questions](#questions)" + '\n');
+    fs.appendFileSync(fileName, generateMarkdown("Installation")+ '\n');
+    fs.appendFileSync(fileName, installAnswer + '\n');
+    fs.appendFileSync(fileName, generateMarkdown("Usage")+ '\n');
+    fs.appendFileSync(fileName, usageAnswer + '\n');
+    fs.appendFileSync(fileName, generateMarkdown("Contributing")+ '\n');
+    fs.appendFileSync(fileName, contributeAnswer+ '\n');
+    fs.appendFileSync(fileName, generateMarkdown("Tests")+ '\n');
+    fs.appendFileSync(fileName, testAnswer + '\n');
+    fs.appendFileSync(fileName, generateMarkdown("License")+ '\n');
+    fs.appendFileSync(fileName, licenseAnswer + '\n');
+    fs.appendFileSync(fileName, generateMarkdown("Questions"));
+    fs.appendFileSync(fileName, `www.github.com/${githubAnswer}`+ '\n');
+    fs.appendFileSync(fileName, `If you have any further questions feel free to email me at: <${emailAnswer}>` + '\n');
 }
 
 // function to initialize program
