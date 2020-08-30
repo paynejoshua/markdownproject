@@ -1,9 +1,11 @@
+![GNU License Logo](/assets/gnu-logo.gif)
 # Title
 
-boo
+bub
 # Description
-boo
 
+
+No description provided.
 # Table of contents
 
 
@@ -13,28 +15,27 @@ boo
 [Tests](#tests)
 [License](#license)
 [Questions](#questions)
-
 # Installation
 
 
-boo
+No installation instructions provided.
 # Usage
 
 
-boo
+No usage information provided.
 # Contributing
 
 
-boo
+No contribution guidelines provided.
 # Tests
 
 
-boo
+No test instructions provided.
 # License
 
 
-1
+GNU
 # Questions
 
-www.github.com/boo
-If you have any further questions feel free to email me at: <boo>
+www.github.com/Username not provided
+If you have any further questions feel free to email me at: <No email has been provided>

@@ -1,6 +1,12 @@
-const fs = require("fs")
-const inquirer = require("inquirer")
-const generateMarkdown = require("./utils/generateMarkdown.js")
+const fs = require("fs");
+const inquirer = require("inquirer");
+const path = require("path");
+const generateMarkdown = require("./utils/generateMarkdown.js");
+const APACHE = "/assets/Apache-logo.png";
+const BSD = "/assets/BSD-logo.png";
+const GNU = "/assets/gnu-logo.gif";
+const MIT = "/assets/mit-logo.png";
+
 
 // array of questions for user
 const questions = [{
@@ -37,9 +43,9 @@ const questions = [{
 
 {
     name: "License",
-    message: "What license would you like to use?",
+    message: "What license did you use for this project?",
     type: "list",
-    choices: ["1", "2", "3"],
+    choices: ["Apache 2.0", "BSD", "GNU", "MIT"],
     default: "no license selected",
 },
 {
@@ -58,9 +64,11 @@ const questions = [{
 
 // function to write README file
 function writeToFile(fileName, data) {
-   if(fs.existsSync(fileName)){
-       fs.unlinkSync(fileName)
-   }
+    if (fs.existsSync(fileName)) {
+        fs.unlinkSync(fileName)
+    }
+
+
 
     let titleAnswer = data["Title"];
     let descriptionAnswer = data["Description"];
@@ -69,8 +77,18 @@ function writeToFile(fileName, data) {
     let contributeAnswer = data["ContributionGuidelines"];
     let testAnswer = data["TestInstructions"];
     let licenseAnswer = data["License"];
+    if (licenseAnswer === "Apache 2.0") {
+        fs.appendFileSync(fileName, `![Apache License Logo](${APACHE})` + '\n')
+    } else if (licenseAnswer === "BSD") {
+        fs.appendFileSync(fileName, `![BSD License Logo](${BSD})` + '\n')
+    } else if (licenseAnswer === "GNU"){
+        fs.appendFileSync(fileName, `![GNU License Logo](${GNU})` + '\n')
+    } else {
+        fs.appendFileSync(fileName, `![MIT License Logo](${MIT})` + '\n')
+    }
+
     let githubAnswer = data["github"];
-    let emailAnswer = data ["email"];
+    let emailAnswer = data["email"];
 
     fs.appendFileSync(fileName, generateMarkdown("Title"));
     fs.appendFileSync(fileName, titleAnswer + '\n');
@@ -83,28 +101,28 @@ function writeToFile(fileName, data) {
     fs.appendFileSync(fileName, "[Tests](#tests)" + '\n');
     fs.appendFileSync(fileName, "[License](#license)" + '\n');
     fs.appendFileSync(fileName, "[Questions](#questions)" + '\n');
-    fs.appendFileSync(fileName, generateMarkdown("Installation")+ '\n');
+    fs.appendFileSync(fileName, generateMarkdown("Installation") + '\n');
     fs.appendFileSync(fileName, installAnswer + '\n');
-    fs.appendFileSync(fileName, generateMarkdown("Usage")+ '\n');
+    fs.appendFileSync(fileName, generateMarkdown("Usage") + '\n');
     fs.appendFileSync(fileName, usageAnswer + '\n');
-    fs.appendFileSync(fileName, generateMarkdown("Contributing")+ '\n');
-    fs.appendFileSync(fileName, contributeAnswer+ '\n');
-    fs.appendFileSync(fileName, generateMarkdown("Tests")+ '\n');
+    fs.appendFileSync(fileName, generateMarkdown("Contributing") + '\n');
+    fs.appendFileSync(fileName, contributeAnswer + '\n');
+    fs.appendFileSync(fileName, generateMarkdown("Tests") + '\n');
     fs.appendFileSync(fileName, testAnswer + '\n');
-    fs.appendFileSync(fileName, generateMarkdown("License")+ '\n');
+    fs.appendFileSync(fileName, generateMarkdown("License") + '\n');
     fs.appendFileSync(fileName, licenseAnswer + '\n');
     fs.appendFileSync(fileName, generateMarkdown("Questions"));
-    fs.appendFileSync(fileName, `www.github.com/${githubAnswer}`+ '\n');
+    fs.appendFileSync(fileName, `www.github.com/${githubAnswer}` + '\n');
     fs.appendFileSync(fileName, `If you have any further questions feel free to email me at: <${emailAnswer}>` + '\n');
 }
 
 // function to initialize program
 function init() {
     inquirer.prompt(questions)
-  .then(answers => {
-    console.log('Answers:', answers);
-    writeToFile("README.md", answers)
-  });
+        .then(answers => {
+            console.log('Answers:', answers);
+            writeToFile("README.md", answers)
+        });
 }
 
 // function call to initialize program
