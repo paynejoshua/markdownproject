@@ -2,10 +2,10 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const path = require("path");
 const generateMarkdown = require("./utils/generateMarkdown.js");
-const APACHE = "/assets/Apache-logo.png";
-const BSD = "/assets/BSD-logo.png";
-const GNU = "/assets/gnu-logo.gif";
-const MIT = "/assets/mit-logo.png";
+const APACHE = "../assets/Apache-logo.png";
+const BSD = "../assets/BSD-logo.png";
+const GNU = "../assets/gnu-logo.gif";
+const MIT = "../assets/mit-logo.png";
 
 
 // array of questions for user
@@ -78,13 +78,13 @@ function writeToFile(fileName, data) {
     let testAnswer = data["TestInstructions"];
     let licenseAnswer = data["License"];
     if (licenseAnswer === "Apache 2.0") {
-        fs.appendFileSync(fileName, `![Apache License Logo](${APACHE})` + '\n')
+        fs.appendFileSync(fileName, `<img src="${APACHE}" width="100">` + '\n\n')
     } else if (licenseAnswer === "BSD") {
-        fs.appendFileSync(fileName, `![BSD License Logo](${BSD})` + '\n')
+        fs.appendFileSync(fileName, `<img src="${BSD}" width="100">` + '\n\n')
     } else if (licenseAnswer === "GNU"){
-        fs.appendFileSync(fileName, `![GNU License Logo](${GNU})` + '\n')
+        fs.appendFileSync(fileName, `<img src="${GNU}" width="100">` + '\n\n')
     } else {
-        fs.appendFileSync(fileName, `![MIT License Logo](${MIT})` + '\n')
+        fs.appendFileSync(fileName, `<img src="${MIT}" width="100">` + '\n\n')
     }
 
     let githubAnswer = data["github"];
@@ -95,12 +95,18 @@ function writeToFile(fileName, data) {
     fs.appendFileSync(fileName, generateMarkdown("Description") + '\n');
     fs.appendFileSync(fileName, descriptionAnswer + '\n');
     fs.appendFileSync(fileName, generateMarkdown("Table of contents") + '\n');
-    fs.appendFileSync(fileName, "[Installation](#installation)" + '\n');
-    fs.appendFileSync(fileName, "[Usage](#usage)" + '\n');
-    fs.appendFileSync(fileName, "[Contributing](#contributing)" + '\n');
-    fs.appendFileSync(fileName, "[Tests](#tests)" + '\n');
-    fs.appendFileSync(fileName, "[License](#license)" + '\n');
-    fs.appendFileSync(fileName, "[Questions](#questions)" + '\n');
+    fs.appendFileSync(fileName, 
+      "[Installation](#installation)" + '\n\n'
+    + "[Usage](#usage)" + '\n\n'
+    + "[Contributing](#contributing)" + '\n\n'
+    + "[Tests](#tests)" + '\n\n'
+    + "[License](#license)" + '\n\n'
+    + "[Questions](#questions)" + '\n\n');
+    // fs.appendFileSync(fileName, "[Usage](#usage)" + '\n');
+    // fs.appendFileSync(fileName, "[Contributing](#contributing)" + '\n');
+    // fs.appendFileSync(fileName, "[Tests](#tests)" + '\n');
+    // fs.appendFileSync(fileName, "[License](#license)" + '\n');
+    // fs.appendFileSync(fileName, "[Questions](#questions)" + '\n');
     fs.appendFileSync(fileName, generateMarkdown("Installation") + '\n');
     fs.appendFileSync(fileName, installAnswer + '\n');
     fs.appendFileSync(fileName, generateMarkdown("Usage") + '\n');

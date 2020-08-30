@@ -1,7 +1,8 @@
-![GNU License Logo](/assets/gnu-logo.gif)
+<img src="../assets/mit-logo.png" width="100">
+
 # Title
 
-bub
+
 # Description
 
 
@@ -10,11 +11,17 @@ No description provided.
 
 
 [Installation](#installation)
+
 [Usage](#usage)
+
 [Contributing](#contributing)
+
 [Tests](#tests)
+
 [License](#license)
+
 [Questions](#questions)
+
 # Installation
 
 
@@ -34,7 +41,7 @@ No test instructions provided.
 # License
 
 
-GNU
+MIT
 # Questions
 
 www.github.com/Username not provided
