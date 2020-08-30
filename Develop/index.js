@@ -102,11 +102,6 @@ function writeToFile(fileName, data) {
     + "[Tests](#tests)" + '\n\n'
     + "[License](#license)" + '\n\n'
     + "[Questions](#questions)" + '\n\n');
-    // fs.appendFileSync(fileName, "[Usage](#usage)" + '\n');
-    // fs.appendFileSync(fileName, "[Contributing](#contributing)" + '\n');
-    // fs.appendFileSync(fileName, "[Tests](#tests)" + '\n');
-    // fs.appendFileSync(fileName, "[License](#license)" + '\n');
-    // fs.appendFileSync(fileName, "[Questions](#questions)" + '\n');
     fs.appendFileSync(fileName, generateMarkdown("Installation") + '\n');
     fs.appendFileSync(fileName, installAnswer + '\n');
     fs.appendFileSync(fileName, generateMarkdown("Usage") + '\n');
