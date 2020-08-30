@@ -1,8 +1,6 @@
-<img src="../assets/mit-logo.png" width="100">
-
 # Title
 
-
+bib
 # Description
 
 
@@ -41,8 +39,9 @@ No test instructions provided.
 # License
 
 
-MIT
+This application is not covered under any license
 # Questions
 
 www.github.com/Username not provided
-If you have any further questions feel free to email me at: <No email has been provided>
+
+If you have any further questions feel free to email me at: No email has been provided

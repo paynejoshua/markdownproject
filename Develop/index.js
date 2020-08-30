@@ -45,7 +45,7 @@ const questions = [{
     name: "License",
     message: "What license did you use for this project?",
     type: "list",
-    choices: ["Apache 2.0", "BSD", "GNU", "MIT"],
+    choices: ["Apache 2.0", "BSD", "GNU", "MIT", "NONE"],
     default: "no license selected",
 },
 {
@@ -81,9 +81,10 @@ function writeToFile(fileName, data) {
         fs.appendFileSync(fileName, `<img src="${APACHE}" width="100">` + '\n\n')
     } else if (licenseAnswer === "BSD") {
         fs.appendFileSync(fileName, `<img src="${BSD}" width="100">` + '\n\n')
-    } else if (licenseAnswer === "GNU"){
+    } else if (licenseAnswer === "GNU") {
         fs.appendFileSync(fileName, `<img src="${GNU}" width="100">` + '\n\n')
-    } else {
+    } 
+    else if (licenseAnswer === "MIT") {
         fs.appendFileSync(fileName, `<img src="${MIT}" width="100">` + '\n\n')
     }
 
@@ -95,13 +96,13 @@ function writeToFile(fileName, data) {
     fs.appendFileSync(fileName, generateMarkdown("Description") + '\n');
     fs.appendFileSync(fileName, descriptionAnswer + '\n');
     fs.appendFileSync(fileName, generateMarkdown("Table of contents") + '\n');
-    fs.appendFileSync(fileName, 
-      "[Installation](#installation)" + '\n\n'
-    + "[Usage](#usage)" + '\n\n'
-    + "[Contributing](#contributing)" + '\n\n'
-    + "[Tests](#tests)" + '\n\n'
-    + "[License](#license)" + '\n\n'
-    + "[Questions](#questions)" + '\n\n');
+    fs.appendFileSync(fileName,
+        "[Installation](#installation)" + '\n\n'
+        + "[Usage](#usage)" + '\n\n'
+        + "[Contributing](#contributing)" + '\n\n'
+        + "[Tests](#tests)" + '\n\n'
+        + "[License](#license)" + '\n\n'
+        + "[Questions](#questions)" + '\n\n');
     fs.appendFileSync(fileName, generateMarkdown("Installation") + '\n');
     fs.appendFileSync(fileName, installAnswer + '\n');
     fs.appendFileSync(fileName, generateMarkdown("Usage") + '\n');
@@ -111,10 +112,15 @@ function writeToFile(fileName, data) {
     fs.appendFileSync(fileName, generateMarkdown("Tests") + '\n');
     fs.appendFileSync(fileName, testAnswer + '\n');
     fs.appendFileSync(fileName, generateMarkdown("License") + '\n');
-    fs.appendFileSync(fileName, licenseAnswer + '\n');
+    if (licenseAnswer === "NONE"){
+        fs.appendFileSync(fileName, "This application is not covered under any license" + '\n')
+    } else {
+
+        fs.appendFileSync(fileName, `This application is covered under the ${licenseAnswer} license` + '\n');
+    }
     fs.appendFileSync(fileName, generateMarkdown("Questions"));
-    fs.appendFileSync(fileName, `www.github.com/${githubAnswer}` + '\n');
-    fs.appendFileSync(fileName, `If you have any further questions feel free to email me at: <${emailAnswer}>` + '\n');
+    fs.appendFileSync(fileName, `www.github.com/${githubAnswer}` + '\n\n');
+    fs.appendFileSync(fileName, `If you have any further questions feel free to email me at: ${emailAnswer}` + '\n');
 }
 
 // function to initialize program
