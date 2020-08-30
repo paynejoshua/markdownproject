@@ -104,23 +104,23 @@ function writeToFile(fileName, data) {
         + "[License](#license)" + '\n\n'
         + "[Questions](#questions)" + '\n\n');
     fs.appendFileSync(fileName, generateMarkdown("Installation") + '\n');
-    fs.appendFileSync(fileName, installAnswer + '\n');
+    fs.appendFileSync(fileName, installAnswer + '\n\n' + "[Table of Contents](#table-of-contents)" + '\n');
     fs.appendFileSync(fileName, generateMarkdown("Usage") + '\n');
-    fs.appendFileSync(fileName, usageAnswer + '\n');
+    fs.appendFileSync(fileName, usageAnswer + '\n\n' + "[Table of Contents](#table-of-contents)" + '\n');
     fs.appendFileSync(fileName, generateMarkdown("Contributing") + '\n');
-    fs.appendFileSync(fileName, contributeAnswer + '\n');
+    fs.appendFileSync(fileName, contributeAnswer + '\n\n' + "[Table of Contents](#table-of-contents)" + '\n');
     fs.appendFileSync(fileName, generateMarkdown("Tests") + '\n');
-    fs.appendFileSync(fileName, testAnswer + '\n');
+    fs.appendFileSync(fileName, testAnswer + '\n\n' + "[Table of Contents](#table-of-contents)" + '\n');
     fs.appendFileSync(fileName, generateMarkdown("License") + '\n');
     if (licenseAnswer === "NONE"){
-        fs.appendFileSync(fileName, "This application is not covered under any license" + '\n')
+        fs.appendFileSync(fileName, "This application is not covered under any license" + '\n\n' + "[Table of Contents](#table-of-contents)" + '\n')
     } else {
 
-        fs.appendFileSync(fileName, `This application is covered under the ${licenseAnswer} license` + '\n');
+        fs.appendFileSync(fileName, `This application is covered under the ${licenseAnswer} license` + '\n\n' + "[Table of Contents](#table-of-contents)" + '\n');
     }
     fs.appendFileSync(fileName, generateMarkdown("Questions"));
     fs.appendFileSync(fileName, `www.github.com/${githubAnswer}` + '\n\n');
-    fs.appendFileSync(fileName, `If you have any further questions feel free to email me at: ${emailAnswer}` + '\n');
+    fs.appendFileSync(fileName, `If you have any further questions feel free to email me at: ${emailAnswer}` + '\n' +'\n\n' + "[Table of Contents](#table-of-contents)" + '\n');
 }
 
 // function to initialize program
